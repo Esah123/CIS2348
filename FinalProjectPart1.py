@@ -1,4 +1,9 @@
-
+#############################################
+#     Name: Esah Bukhari                    #
+#     ID: 2083147                           #
+#                                           #
+#                                           #
+#############################################
 # Create a class called Object to house all the attributes of the Student
 class Student:
     def __init__(self, student_id, last_name, first_name, major, gpa=None, graduation_date=None, disciplinary_action=False):
@@ -50,10 +55,10 @@ def write_full_roster(students, file_path):
         for student in sorted_students:
             line = f"{student.student_id},{student.major},{student.first_name},{student.last_name},{student.gpa},{student.graduation_date},{student.disciplinary_action}\n"
             file.write(line)
-
+# Sort students by last name
 def sort_students_by_lastname(student):
     return student.last_name
-
+# Create full roster
 def write_full_roster(students, file_path):
     sorted_students = sorted(students.values(), key=sort_students_by_lastname)
     with open(file_path, 'w') as file:
@@ -61,10 +66,10 @@ def write_full_roster(students, file_path):
         for student in sorted_students:
             line = f"{student.student_id},{student.major},{student.first_name},{student.last_name},{student.gpa},{student.graduation_date},{student.disciplinary_action}\n"
             file.write(line)
-
+# Sort students by id
 def sort_students_by_id(student):
     return student.student_id
-
+# Writer major lists
 def write_major_lists(students):
     majors = {}
     for student in students.values():
@@ -80,13 +85,13 @@ def write_major_lists(students):
             for student in sorted(students, key=sort_students_by_id):
                 line = f"{student.student_id},{student.last_name},{student.first_name},{student.graduation_date},{student.disciplinary_action}\n"
                 file.write(line)
-
+# Eligible for scholorship
 def is_eligible_for_scholarship(student):
     return student.gpa and student.gpa > 3.8 and not student.disciplinary_action and not student.graduation_date
-
+# Sort by GPA
 def sort_by_gpa(student):
     return -student.gpa
-
+# Write scholorship candidates
 def write_scholarship_candidates(students, file_path):
     eligible_students = filter(is_eligible_for_scholarship, students.values())
     with open(file_path, 'w') as file:
@@ -94,13 +99,13 @@ def write_scholarship_candidates(students, file_path):
         for student in sorted(eligible_students, key=sort_by_gpa):
             line = f"{student.student_id},{student.last_name},{student.first_name},{student.major},{student.gpa}\n"
             file.write(line)
-
+# Is disciplined
 def is_disciplined(student):
     return student.disciplinary_action
-
+# sort by graduation
 def sort_by_graduation_date(student):
     return student.graduation_date
-
+# Write disciplined students
 def write_disciplined_students(students, file_path):
     disciplined_students = filter(is_disciplined, students.values())
     with open(file_path, 'w') as file:
